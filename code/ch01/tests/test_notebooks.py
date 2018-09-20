@@ -2,7 +2,6 @@ import unittest
 import os
 import subprocess
 import tempfile
-import watermark
 import nbformat
 
 
@@ -11,8 +10,7 @@ def run_ipynb(path):
     with tempfile.NamedTemporaryFile(suffix=".ipynb") as fout:
         args = ["python", "-m", "nbconvert", "--to",
                 "notebook", "--execute", "--output",
-                "--ExecutePreprocessor.kernel_name", "python"
-                fout.name, path]
+                "--ExecutePreprocessor.kernel_name", "python",fout.name, path]
         subprocess.check_output(args)
 
 

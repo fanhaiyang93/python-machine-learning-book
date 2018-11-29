@@ -33,19 +33,20 @@ class MyPerceptron:
     def predict(self, X):  # 这里的X就是一个样本的特征的向量
         return np.where((np.dot(X, self.w_[1:]) + self.w_[0]) >= 0.0, 1, -1)
 
-df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
-y=df.iloc[0:100,4].values
-y=np.where(y=='Iris-setosa',1,-1)
-X=df.iloc[0:100,[0,2]].values
+if __name__ == '__main__':
+    df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
+    y=df.iloc[0:100,4].values
+    y=np.where(y=='Iris-setosa',1,-1)
+    X=df.iloc[0:100,[0,2]].values
 
-myppn=MyPerceptron(eta=0.1,n_iter=10)
-myppn.fit(X,y)
-print(myppn.errors_)
-print(myppn.w_)
+    myppn=MyPerceptron(eta=0.1,n_iter=10)
+    myppn.fit(X,y)
+    print(myppn.errors_)
+    print(myppn.w_)
 
-plt.plot(range(1,len(myppn.errors_)+1),myppn.errors_,marker='o')
-plt.xlabel('迭代次数')
-plt.ylabel('错误分类样本数量')
-plt.tight_layout()
-plt.show()
+    plt.plot(range(1,len(myppn.errors_)+1),myppn.errors_,marker='o',color='red')
+    plt.xlabel('迭代次数')
+    plt.ylabel('错误分类样本数量')
+    plt.tight_layout()
+    plt.show()
 

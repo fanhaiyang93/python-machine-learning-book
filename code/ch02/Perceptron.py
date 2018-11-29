@@ -33,29 +33,29 @@ class Perceptron(object):
         return np.where(self.net_input(X) >= 0.0, 1, -1)
 
 
-df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
-# select setosa and versicolor
-y = df.iloc[0:100, 4].values
-y = np.where(y == 'Iris-setosa', -1, 1)
-
-X = df.iloc[0:100, [0, 2]].values
-
-ppn=Perceptron(eta=0.1,n_iter=10)
-ppn.fit(X,y)
-
-plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
-plt.xlabel('迭代次数')
-plt.ylabel('错误分类样本数量')
-plt.tight_layout()
+#df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
+## select setosa and versicolor
+#y = df.iloc[0:100, 4].values
+#y = np.where(y == 'Iris-setosa', -1, 1)
+#
+#X = df.iloc[0:100, [0, 2]].values
+#
+#ppn=Perceptron(eta=0.1,n_iter=10)
+#ppn.fit(X,y)
+#
+#plt.plot(range(1, len(ppn.errors_) + 1), ppn.errors_, marker='o')
+#plt.xlabel('迭代次数')
+#plt.ylabel('错误分类样本数量')
+#plt.tight_layout()
 # plt.savefig('./perceptron_1.png', dpi=300)
-plt.show()
+#plt.show()
 
 
-plot_decision_regions(X,y,classifier=ppn)
-plt.xlabel('sepal length [cm]')
-plt.ylabel('petal length [cm]')
-plt.legend(loc='upper left')
-plt.show()
+#plot_decision_regions(X,y,classifier=ppn)
+#plt.xlabel('sepal length [cm]')
+#plt.ylabel('petal length [cm]')
+#plt.legend(loc='upper left')
+#plt.show()
 
 
 

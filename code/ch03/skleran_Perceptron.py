@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn import datasets
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection  import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import Perceptron,LogisticRegression
 from sklearn.metrics import accuracy_score
@@ -22,7 +22,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 sc = StandardScaler()
 sc.fit(X_train)  # 计算训练样本中每个特征的μ（样本均值）和σ（标准差）
 X_train_std = sc.transform(X_train)  # 使用前面计算的μ（样本均值）和σ（标准差）来对训练数据做标准化处理
-X_test_std = sc.transform(X_test)
+X_test_std = sc.transform(X_test) #就是减平均值，除以标准差
 # 训练数据
 ppn = Perceptron(max_iter=40, eta0=0.1, random_state=0)
 ppn.fit(X_train_std, y_train)
@@ -32,6 +32,7 @@ y_pred = ppn.predict(X_test_std)
 print('准确率：%.2f' % accuracy_score(y_test,y_pred))
 
 plot_decision_regions(X_train_std,y_train,classifier=ppn)
+# plot_decision_regions(X_train_std,y_train,classifier=ppn,test_idx=range(105,150))
 plt.xlabel('perceptron')
 plt.show()
 

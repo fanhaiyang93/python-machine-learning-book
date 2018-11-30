@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 # import Perceptron
 
-def plot_decision_regions(X, y, classifier, resolution=0.02):
+def plot_decision_regions(X, y, classifier, resolution=0.02,test_idx=None):
 
     # setup marker generator and color map
     markers = ('s', 'x', 'o', '^', 'v')
@@ -31,6 +31,11 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
                     edgecolor='black',
                     marker=markers[idx],
                     label=cl)
+
+    if test_idx:
+        X_test,y_test=X[test_idx,:],y[test_idx]
+        plt.scatter(X_test[:,0],X_test[:,1],c='',alpha=1.0,linewidth=1,marker='o',s=55,label='test set')
+
 
 if __name__ == "__main__":
     df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data', header=None)
